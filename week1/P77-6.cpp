@@ -41,7 +41,7 @@ public:
 		int erase_cnt = 0;
 		node* now = head;
 		while(now -> nxt != NULL){
-			if (_val == now -> nxt -> val){
+			if (!(_val < now -> nxt -> val) && !(now -> nxt -> val < _val)){
 				node* del = now -> nxt;
 				now -> nxt = now -> nxt -> nxt;
 				delete del;
