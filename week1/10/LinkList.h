@@ -82,68 +82,65 @@ public:
 		return *this;
 	}
 
-	// 合并两个链表并排序
-	void MergeAndSort(LinkList& list1, LinkList& list2) {
-		LinkList result;
-		Node<T>* ptr1 = list1.head;
-		Node<T>* ptr2 = list2.head;
-		while (ptr1 != nullptr) {
-			result.insertTail(ptr1->data);
-			ptr1 = ptr1->next;
-		}
-		while (ptr2 != nullptr) {
-			result.insertTail(ptr2->data);
-			ptr2 = ptr2->next;
-		}
-		*this = result;
-
-		if (head == nullptr || head->next == nullptr) return;
-		Node<T>* sorted = nullptr;
-		Node<T>* current = head;
-		while (current != nullptr) {
-			Node<T>* next = current->next;
-			if (sorted == nullptr || sorted->data <= current->data) {
-				current->next = sorted;
-				sorted = current;
-			} else {
-				Node<T>* temp = sorted;
-				while (temp->next != nullptr && temp->next->data > current->data) {
-					temp = temp->next;
-				}
-				current->next = temp->next;
-				temp->next = current;
+	void MergeAndSort(LinkList<int>&ls1,LinkList<int>&ls2){
+		Node<int>*p1 = ls1.head;
+		Node<int>*p2 = ls2.head;
+		while(p1!=nullptr && p2!=nullptr){
+			int e1 = p1->data, e2 = p2->data;
+			if(e1<=e2) {
+				this->insertHead(e1);
+				p1 = p1->next;
+			}else{
+				this->insertHead(e2);
+				p2 = p2->next;
 			}
-			current = next;
 		}
-		head = sorted;
-
-		// LinkList New;
-		// Node<T>* temp = result.head;
-		// for (int i = 0; i < result.length; ++i) {
-		// 	T max = temp->data;
-		// 	Node<T>* maxNode = temp;
-		// 	Node<T>* current = temp->next;
-		// 	while (current != nullptr) {
-		// 		if (current->data > max) {
-		// 			max = current->data;
-		// 			maxNode = current;
-		// 		}
-		// 		current = current->next;
-		// 	}
-		// 	New.insertTail(max);
-		// 	if (maxNode == temp) {
-		// 		temp = temp->next;  // 如果最大节点是当前节点，移动temp到下一个
-		// 	} else {
-		// 		Node<T>* deletePrev = temp;
-		// 		while (deletePrev->next != maxNode) {
-		// 			deletePrev = deletePrev->next;
-		// 		}
-		// 		deletePrev->next = maxNode->next;  // 删除最大节点
-		// 	}
-		// 	delete maxNode;  // 释放最大节点内存
-		// }
-		// *this = New;
+		while(p1!=nullptr){
+			int e1 = p1->data;
+			this->insertHead(e1);
+			p1 = p1->next;
+		}
+		while(p2!=nullptr){
+			int e2 = p2->data;
+			this->insertHead(e2);
+			p2 = p2->next;
+		}
 	}
+	 // 合并两个链表并排序
+	 // void MergeAndSort(LinkList& list1, LinkList& list2) {
+	 // 	LinkList result;
+	 // 	Node<T>* ptr1 = list1.head;
+	 // 	Node<T>* ptr2 = list2.head;
+	 // 	while (ptr1 != nullptr) {
+	 // 		result.insertTail(ptr1->data);
+	 // 		ptr1 = ptr1->next;
+	 // 	}
+	 // 	while (ptr2 != nullptr) {
+	 // 		result.insertTail(ptr2->data);
+	 // 		ptr2 = ptr2->next;
+	 // 	}
+	 // 	*this = result;
+	 //
+	 // 	if (head == nullptr || head->next == nullptr) return;
+	 // 	Node<T>* sorted = nullptr;
+	 // 	Node<T>* current = head;
+	 // 	while (current != nullptr) {
+	 // 		Node<T>* next = current->next;
+	 // 		if (sorted == nullptr || sorted->data <= current->data) {
+	 // 			current->next = sorted;
+	 // 			sorted = current;
+	 // 		} else {
+	 // 			Node<T>* temp = sorted;
+	 // 			while (temp->next != nullptr && temp->next->data > current->data) {
+	 // 				temp = temp->next;
+	 // 			}
+	 // 			current->next = temp->next;
+	 // 			temp->next = current;
+	 // 		}
+	 // 		current = next;
+	 // 	}
+	 // 	head = sorted;
+	// }
 };
 
 #endif // LINKLIST_H
