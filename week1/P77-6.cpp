@@ -26,7 +26,7 @@ public:
 		}
 		now -> nxt = new node(_val);
 	}
-	void append(const T& _val) {push_back(_val);}
+	void append(const T& _val) {push(_val);}
 	void pop(){
 		assert(head -> nxt != NULL);
 		node* now = head;
