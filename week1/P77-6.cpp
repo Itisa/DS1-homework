@@ -41,6 +41,9 @@ public:
 		int erase_cnt = 0;
 		node* now = head;
 		while(now -> nxt != NULL){
+			if (_val -> nxt < now -> nxt -> val){
+				break;
+			}
 			if (!(_val < now -> nxt -> val) && !(now -> nxt -> val < _val)){
 				node* del = now -> nxt;
 				now -> nxt = now -> nxt -> nxt;
@@ -82,11 +85,13 @@ private:
 
 int main(){
 	sorted_Linklist_with_head<int> tmp;
-	int a[] = {4,2,6,2,4,71,8,23,0,-2};
+	// int a[] = {4,2,6,2,4,71,8,23,0,-2};
+	int a[] = {1,4,7,9};
 	int siz = sizeof(a)/sizeof(int);
 	for (int i = 0; i < siz; i++){
 		tmp.push(a[i]);
 	}
+	tmp.push(3);
 	cout << "print_all" << endl;
 	tmp.print_all();
 	cout << "erase_cnt: 2" << endl;
