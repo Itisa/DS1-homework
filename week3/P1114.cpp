@@ -45,10 +45,22 @@ int P14(node* root){
 	}
 }
 
+//     1
+//    / \
+//   2   3
+//  / \   \
+// 4   5   6
+//    / \
+//   7   8
 int main(){
 	node* root = new node(1);
-    root->rson = new node(2);
-    root->rson->lson = new node(3);
+    root->lson = new node(2);
+    root->rson = new node(3);
+    root->lson->lson = new node(4);
+    root->lson->rson = new node(5);
+    root->rson->rson = new node(6);
+    root->lson->rson->lson = new node(7);
+    root->lson->rson->rson = new node(8);
     vector<int> mid = P11(root);
     int cnt = P14(root);
     for (int i = 0; i < mid.size(); i++){
